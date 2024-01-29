@@ -3,8 +3,8 @@
 
   <svg-icon name="lock" color="pink" width="100px" height="100px"></svg-icon>
   <Pagination />
-  <el-button type="primary" size="default" :icon="Plus">主要按钮</el-button>
-  <el-button type="success" size="small" :icon="Edit">编辑</el-button>
+  <!-- <el-button type="primary" size="default" :icon="Plus">主要按钮</el-button>
+  <el-button type="success" size="small" :icon="Edit">编辑</el-button> -->
 
   <div>
     <h1>测试sass</h1>
