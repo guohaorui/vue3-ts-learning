@@ -8,6 +8,8 @@ import zhCn from 'element-plus/dist/locale/zh-cn.mjs'
 import 'virtual:svg-icons-register'
 import ids from 'virtual:svg-icons-names'
 
+import router from './router'
+
 const app = createApp(App)
 app.use(ElementPlus, { locale: zhCn })
 
@@ -26,16 +28,6 @@ console.log(app)
 // 引入模板的全局样式
 import '@/styles/index.scss'
 
-// 测试假接口
-
-import axios from 'axios'
-axios({
-  url: '/api/user/login',
-  method: 'post',
-  data: {
-    username: 'admin',
-    password: '11112211',
-  },
-})
+app.use(router)
 
 app.mount('#app')
