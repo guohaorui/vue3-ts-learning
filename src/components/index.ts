@@ -11,7 +11,7 @@ export default {
     Object.keys(allGlobalComponent).forEach((key) => {
       app.component(key, allGlobalComponent[key])
       console.log(allGlobalComponent[key])
+      console.log(key)
     })
-
   },
 }
