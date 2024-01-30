@@ -7,13 +7,26 @@
           <h1>Hello</h1>
           <h2>欢迎来到瑞兹平台</h2>
           <el-form-item>
-            <el-input :prefix-icon="User" v-model="loginForm.username"></el-input>
+            <el-input
+              :prefix-icon="User"
+              v-model="loginForm.username"
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-input type="password" :prefix-icon="Lock" v-model="loginForm.password" show-password></el-input>
+            <el-input
+              type="password"
+              :prefix-icon="Lock"
+              v-model="loginForm.password"
+              show-password
+            ></el-input>
           </el-form-item>
           <el-form-item>
-            <el-button class="login-btn" type="primary" size="default">
+            <el-button
+              class="login-btn"
+              type="primary"
+              size="default"
+              @click="login"
+            >
               登录
             </el-button>
           </el-form-item>
@@ -25,9 +38,18 @@
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
 import { reactive } from 'vue'
+import useUserStore from '@/store/modules/user'
+let userStore = useUserStore();
+
 
 // 收集账号和密码的数据
-let loginForm = reactive({ username: 'admin', password: '111111' });
+let loginForm = reactive({ username: 'admin', password: '111111' })
+const login = () => {
+  // 1. 通知仓库发登录请求
+  // 2. 请求成功后展示数据
+  // 3. 请求失败需要弹出登录失败信息
+  userStore.userLogin()
+}
 </script>
 
 <style lang="scss">
@@ -53,7 +75,7 @@ let loginForm = reactive({ username: 'admin', password: '111111' });
     h2 {
       color: white;
       font-size: 20px;
-      margin: 20px 0
+      margin: 20px 0;
     }
 
     .login-btn {

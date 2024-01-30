@@ -9,6 +9,7 @@ import 'virtual:svg-icons-register'
 import ids from 'virtual:svg-icons-names'
 
 import router from './router'
+import pinia from './store'
 
 const app = createApp(App)
 app.use(ElementPlus, { locale: zhCn })
@@ -29,5 +30,6 @@ console.log(app)
 import '@/styles/index.scss'
 
 app.use(router)
+app.use(pinia)
 
 app.mount('#app')
