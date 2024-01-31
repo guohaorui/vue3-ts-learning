@@ -1,7 +1,7 @@
 <template>
   <div class="login-container">
     <el-row>
-      <el-col :span="12" :xs="0">test1</el-col>
+      <el-col :span="12" :xs="0"></el-col>
       <el-col :span="12" :xs="24">
         <el-form class="login-form">
           <h1>Hello</h1>
@@ -22,6 +22,7 @@
           </el-form-item>
           <el-form-item>
             <el-button
+              :loading="login_loading"
               class="login-btn"
               type="primary"
               size="default"
@@ -37,18 +38,39 @@
 </template>
 <script setup lang="ts">
 import { User, Lock } from '@element-plus/icons-vue'
-import { reactive } from 'vue'
+import { reactive, ref } from 'vue'
+import { useRouter } from 'vue-router'
 import useUserStore from '@/store/modules/user'
-let userStore = useUserStore();
-
+import { ElNotification } from 'element-plus'
+let userStore = useUserStore()
+let $router = useRouter()
+// 定义变量控制按钮加载效果
+let login_loading = ref(false)
 
 // 收集账号和密码的数据
 let loginForm = reactive({ username: 'admin', password: '111111' })
-const login = () => {
+const login = async () => {
   // 1. 通知仓库发登录请求
   // 2. 请求成功后展示数据
   // 3. 请求失败需要弹出登录失败信息
-  userStore.userLogin()
+
+  // 也可以用then写法
+  try {
+    login_loading.value = true
+    await userStore.userLogin(loginForm)
+    $router.push('/')
+    ElNotification({
+      type: 'success',
+      message: '登录成功',
+    })
+  } catch (error) {
+    ElNotification({
+      type: 'error',
+      message: (error as Error).message,
+    })
+  } finally {
+    login_loading.value = false
+  }
 }
 </script>
 

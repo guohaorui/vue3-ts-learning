@@ -5,7 +5,8 @@ export interface loginRequest {
 }
 
 export interface tokenObject {
-  token: string
+  token?: string
+  message?: string
 }
 // 登录接口返参
 export interface loginResponse {

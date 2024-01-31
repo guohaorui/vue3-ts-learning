@@ -7,9 +7,9 @@ enum API {
 }
 
 export const requestLogin = (data: loginRequest) => {
-  request.post<any, loginResponse>(API.LOGIN_URL, data)
+  return request.post<any, loginResponse>(API.LOGIN_URL, data)
 }
 
 export const requestUserInfo = () => {
-  request.get<any, userInfoResponse>(API.USERINFO_URL)
+  return request.get<any, userInfoResponse>(API.USERINFO_URL)
 }
