@@ -82,7 +82,8 @@ let rules = {
 const login = async () => {
   // 保证所有表单项校验通过后再发起请求
   console.log(loginForms.value)
-  let result = loginForms.value.validate()
+  // let result = loginForms.value.validate()
+  // console.log(result)
 
   // 1. 通知仓库发登录请求
   // 2. 请求成功后展示数据
@@ -93,7 +94,6 @@ const login = async () => {
     login_loading.value = true
     await userStore.userLogin(loginForm)
     $router.push('/')
-    getTime()
     ElNotification({
       type: 'success',
       message: '登录成功',
