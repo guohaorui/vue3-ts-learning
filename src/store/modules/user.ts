@@ -3,11 +3,15 @@ import { requestLogin } from '@/api/user'
 import { loginRequest, loginResponse } from '@/api/user/types'
 import { GET_TOKEN, SET_TOKEN } from '@/utils/token'
 import { defineStore } from 'pinia'
+// 引入路由、
+import { constantRoute } from '@/router/routes'
+import type { UserState } from './types/types'
 
 const useUserStore = defineStore('User', {
   state: (): UserState => {
     return {
       token: GET_TOKEN(),
+      menuRoutes: constantRoute,
     }
   },
   // 操作方法
